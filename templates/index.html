@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Approximating Pi</title>
+    <link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <div style="text-align:center;">
+        <h1>Approximating π :)</h1>
+    </div>
+
+    <div>
+        <a class="text">
+            Let's calculate pi! The number pi is irrational, meaning that it has an infinite number of digits without any discernible pattern.
+            Pi is also a special number, representing the ratio of a circle's circumference to its diameter. It appears in many formulae across mathematics and physics.
+            <br>
+            <br>
+            The first approximations of pi can be traced back to Ancient Greece. Archimedes, a Greek mathematician, 
+            devised a method to approximate pi using polygons. Let's first take a look on how he did it!
+        </a>
+
+        <h2 class="text">Archimedes' Method</h2>
+        <a class="text">
+            We know that we can calculate pi by dividing the circumference of a circle by its diameter. But how do we calculate a circle's
+            circumference without pi? We can't, so let's do our best by approximating it with polygons.
+            <br>
+            <br>
+            To start, let's inscribed a regular hexagon inside the circle, then circumscribe a regular hexagon outside the circle. We know that the
+            perimeter of the inscribed hexagon is smaller than that of the circle while the perimeter of the circumscribed hexagon is
+            larger than that of the circle. By calculating these perimeters and dividing them by the diameter of the circle, we get two
+            values approximating pi: one slightly less and one slightly greater.
+            <br>
+            <br>
+            We're not limited to hexagons! We can increase the number of sides of our polygon to get better approximations. Try it below:
+            <br>
+            <br>
+        </a>
+        
+    </div>
+
+    
+    
+    <div class="content">
+        
+        
+        <form onsubmit="return validateForm()" method="POST">
+            <label for="numSides">Number of Sides:</label>
+            <input type="number" id="numSides" name="numSides" min="3" value="{{ num_sides }}">
+            <button type="submit">Update</button>
+            <p class="error" id="errorText" style="display: none;">Number of sides must be 3 or greater.</p>
+        </form>
+        
+        <br>
+    
+        Approximated π (Inscribed): {{ inscribed_pi }}<br>
+        Approximated π (Circumscribed): {{ circumscribed_pi }}<br>
+        Approximated π (Average): {{ average_pi }}<br>
+        Actual Value of π: {{ actual_pi }}<br>
+        
+        <canvas id="canvas" width="400" height="400"></canvas>
+    </div>
+    
+
+
+    
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
